@@ -80,7 +80,7 @@ public class APIClient implements RequestInterceptor {
                 return new Model[size];
             }
         };
-        
+
         private String overview;
         private String title;
         @SerializedName("poster_path")
@@ -89,6 +89,8 @@ public class APIClient implements RequestInterceptor {
         private String voteAverage;
         @SerializedName("release_date")
         private String releaseDate="";
+        @SerializedName("movie_trailer")
+        private String movieTrailer;
         private String id;
         private int runtime;
         private String cachedPosterPath;
@@ -104,6 +106,7 @@ public class APIClient implements RequestInterceptor {
             posterPath = p.readString();
             title = p.readString();
             voteAverage = p.readString();
+            movieTrailer = p.readString();
             releaseDate=p.readString();
             runtime=p.readInt();
             cachedPosterPath=p.readString();
@@ -169,6 +172,10 @@ public class APIClient implements RequestInterceptor {
             this.voteAverage = voteAverage;
         }
 
+        public String getMovieTrailer(){return movieTrailer;}
+
+        public void setMovieTrailer(String movieTrailer){this.movieTrailer}
+
         public String getReleaseYear(){
             return releaseDate.substring(0,4);
         }
@@ -193,6 +200,7 @@ public class APIClient implements RequestInterceptor {
             dest.writeString(posterPath);
             dest.writeString(title);
             dest.writeString(voteAverage);
+            dest.writeString(movieTrailer);
             dest.writeString(releaseDate);
             dest.writeInt(runtime);
             dest.writeString(cachedPosterPath);

@@ -58,7 +58,9 @@ public class MovieAdapter extends ArrayAdapter<APIClient.Model> {
         viewHolder.image.setMinimumHeight(imageHeight);
         viewHolder.image.setMinimumWidth(imageWidth);
         Picasso.with(getContext()).load(movie.getCachedPosterPath()).into(viewHolder.image);
-
+        if (movie.getCachedPosterPath()==null) {
+            movie.setCachedPosterPath("http://image.tmdb.org/t/p/w" + String.valueOf(imageWidth) + "/" + movie.getMovieTrailer());
+        }
         return convertView;
     }
 
